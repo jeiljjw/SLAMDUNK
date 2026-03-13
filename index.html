@@ -502,17 +502,19 @@
         </div>
     </footer>
 
-    <!-- 사이드 광고 (좌) -->
-    <div class="hidden xl:block fixed left-4 top-1/2 -translate-y-1/2 z-40">
-        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-LBU6FAKK6nm5XbzQ" data-ad-width="160"
-            data-ad-height="600"></ins>
-        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-    </div>
-
-    <!-- 사이드 광고 (우) -->
-    <div class="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-40">
-        <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-REDTVSMgm1iUYz1n" data-ad-width="160"
-            data-ad-height="600"></ins>
+    <!-- 사이드 광고 (좌우) -->
+    <div class="hidden lg:block">
+        <!-- 좌측 고정 광고 -->
+        <div class="fixed left-2 top-1/2 -translate-y-1/2 z-40">
+            <ins class="kakao_ad_area" style="display:none;" 
+                data-ad-unit="DAN-LBU6FAKK6nm5XbzQ" data-ad-width="160" data-ad-height="600"></ins>
+        </div>
+        <!-- 우측 고정 광고 -->
+        <div class="fixed right-2 top-1/2 -translate-y-1/2 z-40">
+            <ins class="kakao_ad_area" style="display:none;" 
+                data-ad-unit="DAN-REDTVSMgm1iUYz1n" data-ad-width="160" data-ad-height="600"></ins>
+        </div>
+        <!-- 광고 스크립트 (통합) -->
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
     </div>
 
