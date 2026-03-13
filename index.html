@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLAM DUNK - 뜨거운 코트를 가르며</title>
+
+    <!-- Google Fonts: Black Han Sans (강조용), Noto Sans KR (본문용) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🏀</text></svg>">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/public/manifest.json">
+
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- ★ 서비스 워커 캐시 즉시 강제 해제 (F5 캐시 문제 방지) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                for (let reg of registrations) {
+                    reg.unregister();
+                    console.log('[SW] 강제 해제됨:', reg.scope);
+                }
+            });
+            // 캐시 스토리지도 전부 삭제
+            if (window.caches) {
+                caches.keys().then(function (names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                        console.log('[Cache] 삭제됨:', name);
+                    }
+                });
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shohoku: '#D22730',   // 북산 레드
+                        manga: '#F9F9F9',     // 만화 화이트
+                        inoue: '#1A1A1A',     // 이노우에 블랙
+                        bball: '#E56B1F',     // 농구공 오렌지
+                        hardwood: '#D4A373'   // 하드우드 브라운
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        title: ['"Black Han Sans"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to bottom, rgba(26,26,26,0.8), rgba(26,26,26,0.9)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop')", // 농구 코트 배경 대체
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 커스텀 스크롤바 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D22730;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E56B1F;
+        }
+
+        /* 이미지 플레이스홀더 스타일 */
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2a2a2a;
+            color: #777;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-manga text-inoue font-sans antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-inoue/95 backdrop-blur-sm border-b border-shohoku/30"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home"
+                        class="font-title text-3xl tracking-wider text-manga hover:text-shohoku transition-colors duration-300">
+                        SLAM <span class="text-shohoku">DUNK</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about"
+                        class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">About</a>
+                    <a href="#characters"
+                        class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Characters</a>
+                    <a href="#story"
+                        class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Story</a>
+                    <a href="#gallery"
+                        class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Gallery</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-manga hover:text-shohoku focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-inoue border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about"
+                    class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">About</a>
+                <a href="#characters"
+                    class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Characters</a>
+                <a href="#story"
+                    class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Story</a>
+                <a href="#gallery"
+                    class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Gallery</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section id="home"
+        class="relative h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="font-title text-5xl md:text-7xl lg:text-8xl text-manga mb-6 leading-tight drop-shadow-2xl">
+                포기하면 그 순간이 바로<br />
+                <span class="text-shohoku">시합 종료</span>다.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 font-light tracking-wide">
+                1990년대를 뒤흔든 전설의 농구 만화, 그 뜨거운 코트 위로 초대합니다.
+            </p>
+            <a href="#characters"
+                class="inline-block bg-shohoku text-manga font-bold text-lg px-10 py-4 rounded-full hover:bg-bball transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(210,39,48,0.4)] transition-all duration-300">
+                북산고교 만나보기 <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-manga/70 hover:text-shohoku transition-colors">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. About Section -->
+    <section id="about" class="py-24 bg-manga">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Text Content -->
+                <div class="lg:w-1/2">
+                    <div class="inline-block bg-inoue text-manga font-title px-4 py-1 mb-6 text-sm tracking-widest">THE
+                        LEGEND</div>
+                    <h2 class="font-title text-4xl md:text-5xl text-inoue mb-6 leading-tight">
+                        농구라는 이름의 <br><span class="text-shohoku">청춘의 바이블</span>
+                    </h2>
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+                        이노우에 다케히코(Inoue Takehiko)가 1990년부터 1996년까지 연재한 스포츠 만화의 금자탑. 전 세계 누적 발행부수 1억 7천만 부를 돌파하며 90년대 길거리
+                        농구 붐을 주도했습니다.
+                    </p>
+                    <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+                        불량소년 강백호가 농구를 통해 성장해 나가는 과정, 그리고 북산 고등학교 농구부원들이 보여주는 땀과 눈물은 시대를 초월하여 지금까지도 수많은 이들의 가슴을 뜨겁게 울리고
+                        있습니다.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-16 h-16 rounded-full bg-hardwood/20 flex items-center justify-center text-bball text-2xl">
+                            <i class="fas fa-basketball-ball"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-inoue text-xl">1990 - 1996</p>
+                            <p class="text-sm text-gray-500">주간 소년 점프 연재</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image/Graphic -->
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-shohoku transform translate-x-4 translate-y-4 rounded-xl"></div>
+                        <div
+                            class="relative w-full h-[500px] bg-white rounded-xl shadow-xl overflow-hidden border-4 border-inoue">
+                            <img src="/public/올캐릭터.webp" alt="올캐릭터" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Characters Section -->
+    <section id="characters" class="py-24 bg-inoue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-shohoku text-manga font-title px-4 py-1 mb-4 text-sm tracking-widest">
+                    SHOHOKU STARTING 5</div>
+                <h2 class="font-title text-4xl md:text-5xl text-manga mb-4">문제아 군단, <span class="text-shohoku">북산</span>
+                </h2>
+                <p class="text-gray-400 text-lg">전국 제패를 꿈꾸는 다섯 명의 호랑이들</p>
+            </div>
+
+            <!-- Grid for 5 characters -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+
+                <!-- Character 1: 강백호 -->
+                <div
+                    class="group relative bg-[#222] rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-shohoku transition-all duration-300">
+                    <div class="h-[250px] overflow-hidden bg-gray-800">
+                        <img src="/public/강백호.webp" alt="강백호"
+                            class="w-full h-full object-center object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="absolute top-3 right-3 bg-shohoku text-manga font-title text-xl w-9 h-9 flex items-center justify-center rounded-full shadow-lg">
+                        10</div>
+                    <div class="p-4 relative z-10 bg-gradient-to-t from-[#111] via-[#222] to-transparent">
+                        <p class="text-shohoku font-bold text-sm tracking-wider mb-1">POWER FORWARD</p>
+                        <h3 class="font-title text-2xl text-manga mb-1">강백호</h3>
+                        <p class="text-gray-400 text-sm h-14">"천재니까."<br>경이로운 점프력과 체력을 가진 자칭 천재 초보자.</p>
+                    </div>
+                </div>
+
+                <!-- Character 2: 서태웅 -->
+                <div
+                    class="group relative bg-[#222] rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-shohoku transition-all duration-300">
+                    <div class="h-[250px] overflow-hidden bg-gray-800">
+                        <img src="/public/서태웅.webp" alt="서태웅"
+                            class="w-full h-full object-center object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="absolute top-3 right-3 bg-inoue border-2 border-manga text-manga font-title text-xl w-9 h-9 flex items-center justify-center rounded-full shadow-lg">
+                        11</div>
+                    <div class="p-4 relative z-10 bg-gradient-to-t from-[#111] via-[#222] to-transparent">
+                        <p class="text-shohoku font-bold text-sm tracking-wider mb-1">SMALL FORWARD</p>
+                        <h3 class="font-title text-2xl text-manga mb-1">서태웅</h3>
+                        <p class="text-gray-400 text-sm h-14">"멍청이."<br>화려한 개인기와 폭발적인 득점력을 자랑하는 슈퍼 루키.</p>
+                    </div>
+                </div>
+
+                <!-- Character 3: 채치수 -->
+                <div
+                    class="group relative bg-[#222] rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-shohoku transition-all duration-300">
+                    <div class="h-[250px] overflow-hidden bg-gray-800">
+                        <img src="/public/채치수.webp" alt="채치수"
+                            class="w-full h-full object-center object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="absolute top-3 right-3 bg-inoue border-2 border-manga text-manga font-title text-xl w-9 h-9 flex items-center justify-center rounded-full shadow-lg">
+                        4</div>
+                    <div class="p-4 relative z-10 bg-gradient-to-t from-[#111] via-[#222] to-transparent">
+                        <p class="text-shohoku font-bold text-sm tracking-wider mb-1">CENTER</p>
+                        <h3 class="font-title text-2xl text-manga mb-1">채치수</h3>
+                        <p class="text-gray-400 text-sm h-14">"리바운드를 제압하는 자가 시합을 제압한다."<br>북산의 든든한 기둥이자 주장.</p>
+                    </div>
+                </div>
+
+                <!-- Character 4: 송태섭 -->
+                <div
+                    class="group relative bg-[#222] rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-shohoku transition-all duration-300">
+                    <div class="h-[250px] overflow-hidden bg-gray-800">
+                        <img src="/public/송태섭.webp" alt="송태섭"
+                            class="w-full h-full object-center object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="absolute top-3 right-3 bg-inoue border-2 border-manga text-manga font-title text-xl w-9 h-9 flex items-center justify-center rounded-full shadow-lg">
+                        7</div>
+                    <div class="p-4 relative z-10 bg-gradient-to-t from-[#111] via-[#222] to-transparent">
+                        <p class="text-shohoku font-bold text-sm tracking-wider mb-1">POINT GUARD</p>
+                        <h3 class="font-title text-2xl text-manga mb-1">송태섭</h3>
+                        <p class="text-gray-400 text-sm h-14">"넘버원 가드."<br>단신이지만 번개같은 스피드와 넓은 시야를 가진 사령탑.</p>
+                    </div>
+                </div>
+
+                <!-- Character 5: 정대만 -->
+                <div
+                    class="group relative bg-[#222] rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-shohoku transition-all duration-300">
+                    <div class="h-[250px] overflow-hidden bg-gray-800">
+                        <img src="/public/정대만.webp" alt="정대만"
+                            class="w-full h-full object-center object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div
+                        class="absolute top-3 right-3 bg-inoue border-2 border-manga text-manga font-title text-xl w-9 h-9 flex items-center justify-center rounded-full shadow-lg">
+                        14</div>
+                    <div class="p-4 relative z-10 bg-gradient-to-t from-[#111] via-[#222] to-transparent">
+                        <p class="text-shohoku font-bold text-sm tracking-wider mb-1">SHOOTING GUARD</p>
+                        <h3 class="font-title text-2xl text-manga mb-1">정대만</h3>
+                        <p class="text-gray-400 text-sm h-14">"선생님... 농구가 하고 싶어요."<br>아름다운 폼을 가진 불꽃 남자, 3점 슈터.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Rivals Button -->
+            <div class="text-center mt-12">
+                <button
+                    class="text-manga border border-gray-600 hover:border-shohoku hover:text-shohoku px-8 py-3 rounded-full font-bold transition-all duration-300">
+                    라이벌 팀 보기 (능남, 해남, 산왕) <i class="fas fa-plus ml-2 text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Story Section (Timeline) -->
+    <section id="story" class="py-24 bg-manga relative overflow-hidden">
+        <!-- Background decoration -->
+        <div
+            class="absolute top-0 right-0 -mr-20 -mt-20 text-[20rem] font-title text-gray-100 opacity-50 z-0 select-none">
+            STORY</div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-title text-4xl md:text-5xl text-inoue mb-4">영광의 <span class="text-shohoku">궤적</span>
+                </h2>
+                <p class="text-gray-600 text-lg">초짜에서 전국 무대로, 그들의 멈추지 않는 도전</p>
+            </div>
+
+            <div class="relative border-l-4 border-shohoku/30 ml-3 md:ml-1/2 md:translate-x-[-2px] space-y-12 pb-8">
+
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:w-1/2 md:pr-12 text-left md:text-right">
+                        <div
+                            class="absolute top-0 left-[-11px] md:left-auto md:right-[-11px] md:translate-x-full w-5 h-5 rounded-full bg-shohoku border-4 border-manga">
+                        </div>
+                        <h3 class="font-title text-2xl text-inoue mb-2">프롤로그: 천재의 등장</h3>
+                        <p class="text-sm font-bold text-bball mb-3">#입부 #채소연 #연습경기</p>
+                        <p
+                            class="text-gray-700 bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                            강백호가 채소연에게 반해 농구부에 입부한다. 룰도 모르는 초보자지만 경이로운 신체능력으로 능남고교와의 연습경기에서 강렬한 인상을 남긴다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 md:pl-0 md:flex md:justify-end">
+                    <div class="md:w-1/2 md:pl-12 text-left">
+                        <div
+                            class="absolute top-0 left-[-11px] md:left-[-11px] w-5 h-5 rounded-full bg-shohoku border-4 border-manga">
+                        </div>
+                        <h3 class="font-title text-2xl text-inoue mb-2">카나가와현 예선</h3>
+                        <p class="text-sm font-bold text-bball mb-3">#상양전 #해남전 #능남전</p>
+                        <p
+                            class="text-gray-700 bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                            전국대회 티켓을 건 사투. 김수겸의 상양을 꺾고, 도내 최강 해남대부속고와 접전을 벌인다. 마지막 능남전에서 윤대협과의 명승부 끝에 극적으로 전국대회 진출권을
+                            따낸다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:w-1/2 md:pr-12 text-left md:text-right">
+                        <div
+                            class="absolute top-0 left-[-11px] md:left-auto md:right-[-11px] md:translate-x-full w-5 h-5 rounded-full bg-shohoku border-4 border-manga">
+                        </div>
+                        <h3 class="font-title text-2xl text-inoue mb-2">전국대회: 클라이맥스</h3>
+                        <p class="text-sm font-bold text-bball mb-3">#풍전고 #산왕공고 #영광의시대</p>
+                        <p
+                            class="text-gray-700 bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+                            전국 무대 첫 상대 풍전고를 꺾고, 고교농구 최강의 제왕 산왕공고와 맞붙는다. 한계를 뛰어넘는 선수들, 부상을 입은 강백호의 투혼. 역사에 남을 명승부가 펼쳐진다.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Gallery & Media -->
+    <section id="gallery" class="py-24 bg-inoue border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <div class="inline-block bg-shohoku text-manga font-title px-4 py-1 mb-4 text-sm tracking-widest">
+                        GALLERY</div>
+                    <h2 class="font-title text-4xl md:text-5xl text-manga">기억에 남는 <span class="text-shohoku">명장면</span>
+                    </h2>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-manga transition-colors flex items-center gap-2">
+                        View All Media <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 명장면 5개 전체 표시 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[250px]">
+
+                <!-- Gallery Item 1 (Large) - 농구좋아하세요 -->
+                <div class="lg:col-span-2 lg:row-span-2 relative group overflow-hidden rounded-xl bg-[#2a2a2a]">
+                    <img src="/public/명장면 농구좋아하세요.webp" alt="농구 좋아하세요"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-manga font-title text-xl">농구 좋아하세요?</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 - 난천재 -->
+                <div class="relative group overflow-hidden rounded-xl bg-[#2a2a2a]">
+                    <img src="/public/명장면 난천재.webp" alt="나는 천재니까"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-manga font-title text-lg">천재니까</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 - 왼손은 -->
+                <div class="relative group overflow-hidden rounded-xl bg-[#2a2a2a]">
+                    <img src="/public/명장면 왼손은.webp" alt="왼손은 거들 뿐"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-manga font-title text-lg">왼손은 거들 뿐</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 - 터치 -->
+                <div class="relative group overflow-hidden rounded-xl bg-[#2a2a2a]">
+                    <img src="/public/명장면 터치.webp" alt="명장면 터치"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-manga font-title text-lg">터치</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 - 포기하지마 -->
+                <div class="relative group overflow-hidden rounded-xl bg-[#2a2a2a]">
+                    <img src="/public/명장면 포기하지마.webp" alt="포기하면 그 순간이 시합 종료"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-manga font-title text-lg">포기하면 그 순간이 시합 종료</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111] text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="font-title text-2xl text-manga tracking-wider">SLAM <span
+                            class="text-shohoku">DUNK</span></span>
+                    <p class="text-sm mt-2">© I.T.Planning, Inc. All rights reserved.</p>
+                    <p class="text-xs mt-1">This is a fan-made tribute site. Not for commercial use.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
+                            class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
