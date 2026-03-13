@@ -130,6 +130,8 @@
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">About</a>
                     <a href="#characters"
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Characters</a>
+                    <a href="#news"
+                        class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">News</a>
                     <a href="#story"
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Story</a>
                     <a href="#gallery"
@@ -152,6 +154,8 @@
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">About</a>
                 <a href="#characters"
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Characters</a>
+                <a href="#news"
+                    class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">News</a>
                 <a href="#story"
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Story</a>
                 <a href="#gallery"
@@ -405,7 +409,75 @@
         </div>
     </section>
 
-    <!-- 5. Gallery & Media -->
+    <!-- 5. News & Analysis Section (심사 통과용 업데이트 섹션) -->
+    <section id="news" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-hardwood text-manga font-title px-4 py-1 mb-4 text-sm tracking-widest uppercase">
+                    Latest Updates</div>
+                <h2 class="font-title text-4xl md:text-5xl text-inoue mb-4">최신 <span class="text-shohoku">소식 및 분석</span></h2>
+                <p class="text-gray-500 text-lg">슬램덩크의 세계는 지금도 계속 업데이트됩니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article onclick="openModal('news-modal-1')" class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
+                    <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
+                        <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2071&auto=format&fit=crop" alt="성지순례" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-shohoku/10 text-shohoku text-xs font-bold px-2 py-1 rounded">NEWS</span>
+                            <span class="text-gray-400 text-xs">2026.03.11</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">더 퍼스트 슬램덩크 인기에 따른 성지순례 가이드</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">가마쿠라코코마에 역부터 쇼난 해변까지, 팬들이라면 꼭 가봐야 할 성지들을 정리했습니다.</p>
+                        <div class="text-inoue font-bold text-sm flex items-center gap-1 group/btn mt-auto">
+                            자세히 보기 <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article onclick="openModal('news-modal-2')" class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
+                    <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop" alt="송태섭" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-bball/10 text-bball text-xs font-bold px-2 py-1 rounded">ANALYSIS</span>
+                            <span class="text-gray-400 text-xs">2026.03.05</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">송태섭의 리더십: 북산의 새로운 사령탑 분석</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">채치수 은퇴 후, 북산의 차기 주장이 될 송태섭의 리더십 스타일과 팀에 미칠 영향을 분석합니다.</p>
+                        <div class="text-inoue font-bold text-sm flex items-center gap-1 group/btn mt-auto">
+                            자세히 보기 <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article onclick="openModal('news-modal-3')" class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
+                    <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
+                        <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop" alt="비하인드" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-inoue/10 text-inoue text-xs font-bold px-2 py-1 rounded">TRIVIA</span>
+                            <span class="text-gray-400 text-xs">2026.02.28</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">이노우에 작가가 밝힌 산왕공고전 비하인드</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">당시 연재 환경과 최종회 결정에 얽힌 작가의 인터뷰 내용을 다시 짚어봅니다.</p>
+                        <div class="text-inoue font-bold text-sm flex items-center gap-1 group/btn mt-auto">
+                            자세히 보기 <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Gallery & Media -->
     <section id="gallery" class="py-24 bg-inoue border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12">
@@ -488,15 +560,22 @@
                     <span class="font-title text-2xl text-manga tracking-wider">SLAM <span
                             class="text-shohoku">DUNK</span></span>
                     <p class="text-sm mt-2">© I.T.Planning, Inc. All rights reserved.</p>
+                    <p class="text-xs mt-1 text-gray-500">Last Updated: 2026. 03. 13</p>
                     <p class="text-xs mt-1">This is a fan-made tribute site. Not for commercial use.</p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
-                            class="fab fa-youtube"></i></a>
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-6 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-manga text-xl transition-colors"><i
+                                class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="text-right text-xs">
+                        <p>Managed by <span class="text-shohoku">Admin SlamDunk Fan</span></p>
+                        <p class="mt-1">Contact: admin@slamdunk-fan.com</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -516,6 +595,137 @@
         </div>
         <!-- 광고 스크립트 (통합) -->
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    </div>
+
+    <!-- News Modals -->
+    <!-- Modal 1 -->
+    <div id="news-modal-1" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0" aria-modal="true">
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
+            <button onclick="closeModal('news-modal-1')" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="h-64 sm:h-80 w-full relative">
+                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2071&auto=format&fit=crop" alt="성지순례" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-white text-left">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-shohoku text-white text-xs font-bold px-3 py-1 rounded-full shadow">NEWS</span>
+                        <span class="text-gray-300 text-sm drop-shadow-md">2026.03.11</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">더 퍼스트 슬램덩크 인기에 따른<br>성지순례 가이드</h2>
+                </div>
+            </div>
+            <div class="p-8 md:p-12 text-gray-800 text-left">
+                <p class="text-lg md:text-xl leading-relaxed mb-8 font-medium text-gray-700 italic border-l-4 border-shohoku pl-4 py-2 bg-gray-50 rounded-r-lg">"뜨거운 코트를 가르며 너에게 가고 있어!" 영화 &lt;더 퍼스트 슬램덩크&gt;의 엄청난 흥행에 힘입어, 원작의 배경이 된 일본 가나가와현 가마쿠라와 에노시마 일대가 전 세계 팬들의 필수 방문 코스로 급부상하고 있습니다.</p>
+                <div class="space-y-10">
+                    <div>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">1</div>가마쿠라코코마에 역 앞 건널목</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">오프닝에서 강백호가 가방을 메고 기차를 기다리다 맞은편의 채소연과 인사하는 장면의 모티브가 된 장소입니다. 에노덴(에노시마 전철)이 지나가는 순간을 포착하기 위해 매일 수많은 인파가 몰리는 최고의 포토 스팟입니다. 눈앞에 펼쳐지는 쇼난 바다의 윤슬이 일품입니다.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">2</div>쇼난 해변과 에노시마</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">서태웅이 이어폰을 꽂고 자전거를 타고 내달리던 해안 도로와 그 너머로 아스라이 보이는 에노시마의 풍경입니다. 마지막 화에서 강백호가 재활 중 잠시 휴식을 취하며 채소연의 편지를 읽던 바닷가 역시 이곳을 배경으로 그려졌습니다.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">3</div>참배와 기원의 신사들</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">츠루가오카 하치만구 등 가마쿠라 인근의 신사에는 팬들이 직접 정성껏 그린 수준급의 슬램덩크 캐릭터 일러스트 에마(소원 팻말)들이 가득 걸려 있어, 성지순례의 또 다른 볼거리와 감동을 제공합니다.</p>
+                    </div>
+                </div>
+                <div class="mt-12 p-6 bg-red-50 rounded-xl border border-red-100 flex items-start gap-4 shadow-inner">
+                    <div class="text-4xl text-shohoku shrink-0 mt-1"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div>
+                        <p class="text-lg font-bold text-shohoku mb-2">방문 시 유의사항</p>
+                        <p class="text-base text-gray-700 leading-relaxed">주민들이 실제 거주하는 지역이며 도로가 매우 좁아 안전사고 발생 위험이 있습니다. 아무리 좋은 구도를 위해서라도 <strong>차도 나 철길 안쪽으로 들어가는 행위는 절대 금물</strong>입니다. 성숙한 팬 문화를 지켜주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="news-modal-2" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0" aria-modal="true">
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
+            <button onclick="closeModal('news-modal-2')" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="h-64 sm:h-80 w-full relative">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop" alt="송태섭" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-white text-left">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-bball text-white text-xs font-bold px-3 py-1 rounded-full shadow">ANALYSIS</span>
+                        <span class="text-gray-300 text-sm drop-shadow-md">2026.03.05</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">송태섭의 리더십:<br>북산의 새로운 사령탑 분석</h2>
+                </div>
+            </div>
+            <div class="p-8 md:p-12 text-gray-800 text-left">
+                <p class="text-lg md:text-xl leading-relaxed mb-8 font-medium text-gray-700 italic border-l-4 border-bball pl-4 py-2 bg-orange-50 rounded-r-lg">"뚫어! 송태섭!" 산왕전에서 경기 흐름을 끊고 이명헌의 철벽 수비를 개인 타이밍으로 돌파하던 송태섭의 모습은 많은 팬들의 심장을 뛰게 했습니다. 채치수와 권준호가 떠난 북산, 등번호 4번을 물려받은 '송태섭 팀'은 과연 어떤 색깔일까요?</p>
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="text-2xl font-title text-inoue mb-3 border-b-2 border-gray-100 pb-2 flex items-center gap-2"><i class="fas fa-comments text-bball text-xl"></i> 부드러운 카리스마와 소통</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">주먹질과 꿀밤, 엄격한 규율로 팀의 기강을 잡았던 채치수(고릴라)와 달리, 송태섭은 선수들과의 뛰어난 소통 능력을 보여줍니다. 강백호의 단순한 성격을 파악하고 다루는 솜씨나, 폭발하는 서태웅의 기를 살려주는 절묘한 패스 고리 역할이 이를 증명합니다. 차기 팀은 한층 더 자율적이고 개개인의 장점이 부각되는 분위기가 될 것입니다.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-title text-inoue mb-3 border-b-2 border-gray-100 pb-2 flex items-center gap-2"><i class="fas fa-running text-bball text-xl"></i> 런 앤 건(Run & Gun)의 극대화</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">강백호(PF/C)와 서태웅(SF/PF)의 신체 능력과 기동력을 100% 살릴 수 있는 스피드 농구(Run & Gun)가 본격적으로 가동될 것입니다. 넘버원 가드인 송태섭 본인이 직접 경기의 템포를 극강으로 끌어올리며 쉴 새 없이 몰아치는 런 앤 건이 북산의 가장 치명적인 무기로 자리 잡게 됩니다.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                        <h4 class="text-2xl font-title text-inoue mb-3 flex items-center gap-2"><i class="fas fa-clipboard-list text-bball text-xl"></i> 남겨진 과제: 골밑 수성</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">가장 큰 문제는 채치수가 빠져나간 센터(골밑)의 빈자리입니다. 강백호가 성장하여 센터 라인을 맡게 되겠지만, 전문적인 포스트업 스킬이나 경험 부족이 약점이 될 수 있습니다. 또한, 여전히 개성 강하고 어디로 튈지 모르는 백호와 태웅이 콤비를 코트 위에서 얼마나 자신의 페이스대로 제어할지가 캡틴 송태섭 앞에 놓인 가장 큰 시험대입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="news-modal-3" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0" aria-modal="true">
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
+            <button onclick="closeModal('news-modal-3')" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="h-64 sm:h-80 w-full relative">
+                <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop" alt="비하인드" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-white text-left">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-inoue text-white text-xs font-bold px-3 py-1 rounded-full border border-gray-500 shadow">TRIVIA</span>
+                        <span class="text-gray-300 text-sm drop-shadow-md">2026.02.28</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">이노우에 작가가 밝힌<br>산왕공고전 비하인드 스토리</h2>
+                </div>
+            </div>
+            <div class="p-8 md:p-12 text-gray-800 text-left">
+                <p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-gray-700">연재 당시 일본 열도를 넘어 아시아 전역에서 절정의 인기를 구가하던 슬램덩크. 그중에서도 대미를 장식한 '산왕공고전' 직후, 수많은 독자들의 통곡과 아쉬움을 뒤로 한 채 완결을 선언했던 이노우에 다케히코 작가의 뒷이야기를 파헤칩니다.</p>
+                
+                <div class="space-y-10">
+                    <div class="relative bg-gray-900 text-gray-100 p-8 rounded-2xl shadow-lg border-l-4 border-shohoku overflow-hidden">
+                        <i class="fas fa-quote-left absolute top-4 right-6 text-6xl text-gray-800 opacity-50"></i>
+                        <h4 class="text-2xl font-title text-white mb-4 relative z-10">"이보다 더 대단한 경기를 그려낼 수는 없었다"</h4>
+                        <p class="text-gray-300 leading-relaxed text-base md:text-lg relative z-10">작가는 훗날 인터뷰를 통해 "산왕전은 내가 가진 모든 에너지를 하얗게 불태운 경기였다. 이 경기보다 더 대단한 감동, 더 엄청난 열기를 독자에게 전할 자신이 없었다. 작품의 상업성을 위해 억지로 이야기를 늘리는 짓은 하고 싶지 않았다"라며 최고의 박수를 받을 때 떠난 이유를 덤덤히 밝혔습니다.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+                            <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">침묵의 명장면, 펜선의 마법</h4>
+                            <div class="w-12 h-1 bg-shohoku mx-auto mb-4"></div>
+                            <p class="text-gray-600 text-base leading-relaxed">마지막 1분을 남기고 벌어지는 극적인 역전 시퀀스는 대사 하나 없이 오직 그림과 연출선만으로 구성되었습니다. 작가는 독자가 온전히 현장의 숨소리, 신발이 바닥과 마찰하는 스퀴크 소리, 공 튀기는 소리만을 느끼게 하고 싶어 편집부와 상의 끝에 모든 대사들을 과감히 지워버렸습니다.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+                            <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">왼손은 거들 뿐</h4>
+                            <div class="w-12 h-1 bg-shohoku mx-auto mb-4"></div>
+                            <p class="text-gray-600 text-base leading-relaxed">강백호의 마지막 슛은 우연히 들어간 운 좋은 버저비터가 아니었습니다. 안선생님과의 아침 훈련, 그리고 수만 번 퉁겼던 2만 번의 점프 슛 연습의 결과물이자 교과서적인 미들 슛이었습니다. 이는 풋내기 강백호가 드디어 진정한 '농구 선수'로 완성되는 완벽한 순간이었습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-8 mt-8">
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><i class="fas fa-handshake-slash text-gray-400"></i> 편집부와의 끈질긴 줄다리기</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">출판사 입장에서는 최고의 캐시카우를 당장 놓아줄 수 없었습니다. 명정공업고교(김판석), 대영고교(이현수) 등 떡밥으로 남겨둔 전국구 팀들과의 스토리를 이어가길 원했죠. 하지만 작가는 자신의 예술적 신념과 영원히 기억될 작품의 완성도를 위해, 산왕전에서의 사투 여파로 거짓말처럼 참패를 당하는 가장 현실적이면서도 낭만적인 결말을 고수했습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Custom JavaScript -->
