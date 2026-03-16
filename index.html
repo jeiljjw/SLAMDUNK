@@ -130,12 +130,19 @@
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">About</a>
                     <a href="#characters"
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Characters</a>
+                    <a href="#tools"
+                        class="text-shohoku font-bold hover:text-bball transition-colors duration-300 text-sm uppercase tracking-widest flex items-center gap-1"><i
+                            class="fas fa-gamepad"></i> Tools</a>
                     <a href="#news"
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">News</a>
                     <a href="#story"
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Story</a>
                     <a href="#gallery"
                         class="text-manga font-medium hover:text-shohoku transition-colors duration-300 text-sm uppercase tracking-widest">Gallery</a>
+                    <a href="#disqus_thread"
+                        class="bg-shohoku/10 text-shohoku font-bold px-3 py-1 rounded-full hover:bg-shohoku hover:text-white transition-all duration-300 text-xs uppercase tracking-tighter">
+                        <i class="fas fa-comments mr-1"></i> Comments
+                    </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -154,12 +161,18 @@
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">About</a>
                 <a href="#characters"
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Characters</a>
+                <a href="#tools"
+                    class="block px-3 py-2 text-shohoku font-bold hover:text-bball hover:bg-gray-800 rounded-md"><i
+                        class="fas fa-gamepad mr-2"></i>Tools</a>
                 <a href="#news"
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">News</a>
                 <a href="#story"
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Story</a>
                 <a href="#gallery"
                     class="block px-3 py-2 text-manga font-medium hover:text-shohoku hover:bg-gray-800 rounded-md">Gallery</a>
+                <a href="#disqus_thread" class="block px-3 py-2 text-shohoku font-bold hover:bg-gray-800 rounded-md">
+                    <i class="fas fa-comments mr-2"></i>Comments
+                </a>
             </div>
         </div>
     </nav>
@@ -185,6 +198,33 @@
             <a href="#about" class="text-manga/70 hover:text-shohoku transition-colors">
                 <i class="fas fa-chevron-down text-3xl"></i>
             </a>
+        </div>
+    </section>
+
+    <!-- Hot Today: 오늘의 캐릭터 (동적 업데이트 증명용) -->
+    <section class="py-12 bg-white border-b border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="bg-hardwood/5 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 border border-hardwood/10">
+                <div class="shrink-0 flex items-center justify-center">
+                    <div class="w-32 h-32 rounded-full bg-shohoku flex items-center justify-center text-white text-4xl shadow-lg border-4 border-white"
+                        id="today-char-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="flex-grow text-center md:text-left">
+                    <div
+                        class="inline-block bg-shohoku text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-2 tracking-tighter uppercase font-sans">
+                        Today's Pick</div>
+                    <h3 class="font-title text-3xl text-inoue mb-2">오늘의 <span class="text-shohoku">추천 캐릭터</span></h3>
+                    <p class="text-gray-600 text-lg mb-1" id="today-char-name">캐릭터를 불러오는 중...</p>
+                    <p class="text-gray-400 text-sm italic" id="today-char-quote">잠시만 기다려 주세요.</p>
+                </div>
+                <div class="shrink-0">
+                    <p class="text-xs text-shohoku font-bold mb-1"><i class="fas fa-clock mr-1"></i> 실시간 업데이트 중</p>
+                    <div class="text-2xl font-black text-inoue opacity-20" id="live-clock">00:00:00</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -343,6 +383,122 @@
         </div>
     </section>
 
+    <!-- 3.5 Interactive Tools Section (NEW) -->
+    <section id="tools" class="py-24 bg-manga border-t border-gray-200 relative overflow-hidden">
+        <!-- 배경 패턴 -->
+        <div class="absolute inset-0 opacity-5"
+            style="background-image: radial-gradient(#1A1A1A 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div
+                    class="inline-block bg-bball text-white font-title px-4 py-1 mb-4 text-sm tracking-widest uppercase rounded-full shadow-md">
+                    <i class="fas fa-gamepad mr-2"></i>Fan Zone
+                </div>
+                <h2 class="font-title text-4xl md:text-5xl text-inoue mb-4">팬들을 위한 <span class="text-bball">특별한
+                        도구</span></h2>
+                <p class="text-gray-600 text-lg">나의 북산 포지션을 알아보고, 오늘의 명대사도 확인해보세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 도구 1: 포지션 테스트 -->
+                <div
+                    class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 flex flex-col h-full relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-shohoku/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
+                    </div>
+
+                    <h3 class="font-title text-2xl text-inoue mb-2 flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-shohoku text-white flex items-center justify-center text-lg">
+                            <i class="fas fa-user-check"></i></div>
+                        나에게 맞는 포지션은?
+                    </h3>
+                    <p class="text-gray-500 mb-8">간단한 3가지 질문으로 매칭되는 북산고 멤버를 확인하세요.</p>
+
+                    <!-- 테스트 UI 영역 -->
+                    <div id="position-test-area" class="flex-grow flex flex-col justify-center">
+                        <div id="pt-intro" class="text-center py-6">
+                            <div
+                                class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center text-4xl mb-4 border-4 border-white shadow-inner">
+                                🤔</div>
+                            <button onclick="startPositionTest()"
+                                class="bg-shohoku text-white px-8 py-3 rounded-full font-bold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                테스트 시작하기
+                            </button>
+                        </div>
+
+                        <div id="pt-question" class="hidden">
+                            <div class="flex justify-between text-sm text-gray-400 font-bold mb-2">
+                                <span id="pt-progress-text">Q 1/3</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2 mb-6">
+                                <div id="pt-progress-bar"
+                                    class="bg-shohoku h-2 rounded-full transition-all duration-300" style="width: 33%">
+                                </div>
+                            </div>
+                            <h4 id="pt-q-title" class="text-xl font-bold text-inoue mb-6 text-center leading-relaxed">
+                                질문이 여기에 표시됩니다.</h4>
+                            <div class="space-y-3" id="pt-options">
+                                <!-- 버튼들이 여기에 동적으로 생성됨 -->
+                            </div>
+                        </div>
+
+                        <div id="pt-result" class="hidden text-center animate-fade-in">
+                            <p class="text-shohoku font-bold text-sm mb-2 uppercase tracking-widest">테스트 결과</p>
+                            <h4 id="pt-r-title" class="font-title text-3xl text-inoue mb-2">당신은 '송태섭' 타입!</h4>
+                            <div class="mx-auto w-32 h-32 rounded-full overflow-hidden border-4 border-shohoku shadow-lg mb-4 my-4"
+                                id="pt-r-img-container">
+                                <!-- 이미지 주입 -->
+                            </div>
+                            <p id="pt-r-desc" class="text-gray-600 bg-gray-50 p-4 rounded-xl border border-gray-100">빠른
+                                상황 판단과 센스를 가진... (설명)</p>
+                            <button onclick="resetPositionTest()"
+                                class="mt-6 text-sm text-gray-500 hover:text-shohoku underline decoration-dotted underline-offset-4">다시
+                                하기</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 도구 2: 명대사 뽑기 -->
+                <div
+                    class="bg-inoue rounded-3xl p-8 shadow-xl border border-gray-800 flex flex-col h-full text-manga relative overflow-hidden group">
+                    <div
+                        class="absolute bottom-0 right-0 w-40 h-40 bg-bball/20 rounded-tl-full -mr-10 -mb-10 transition-transform group-hover:scale-110">
+                    </div>
+
+                    <h3 class="font-title text-2xl mb-2 flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-bball text-white flex items-center justify-center text-lg">
+                            <i class="fas fa-cookie-bite"></i></div>
+                        오늘의 명대사 뽑기
+                    </h3>
+                    <p class="text-gray-400 mb-8">하루에 한 번, 북산의 뜨거운 열정을 뽑아보세요.</p>
+
+                    <div class="flex-grow flex flex-col items-center justify-center text-center">
+                        <div id="fortune-ball"
+                            class="w-32 h-32 mb-8 cursor-pointer relative group/ball transition-transform duration-300 hover:scale-105"
+                            onclick="spinFortune()">
+                            <img src="https://em-content.zobj.net/source/apple/354/basketball_1f3c0.png" alt="농구공"
+                                class="w-full h-full drop-shadow-[0_10px_15px_rgba(229,107,31,0.3)]">
+                            <div
+                                class="absolute inset-0 bg-white/20 rounded-full blur opacity-0 group-hover/ball:opacity-100 transition-opacity">
+                            </div>
+                            <span
+                                class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-gray-500 font-bold tracking-widest whitespace-nowrap">CLICK
+                                ME</span>
+                        </div>
+
+                        <div id="fortune-result"
+                            class="min-h-[120px] w-full flex items-center justify-center p-6 border-2 border-dashed border-gray-700 rounded-2xl bg-black/30 backdrop-blur-sm">
+                            <p class="text-gray-400 italic">공을 클릭해서 명대사를 확인하세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 4. Story Section (Timeline) -->
     <section id="story" class="py-24 bg-manga relative overflow-hidden">
         <!-- Background decoration -->
@@ -413,67 +569,144 @@
     <section id="news" class="py-24 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <div class="inline-block bg-hardwood text-manga font-title px-4 py-1 mb-4 text-sm tracking-widest uppercase">
+                <div
+                    class="inline-block bg-hardwood text-manga font-title px-4 py-1 mb-4 text-sm tracking-widest uppercase">
                     Latest Updates</div>
-                <h2 class="font-title text-4xl md:text-5xl text-inoue mb-4">최신 <span class="text-shohoku">소식 및 분석</span></h2>
+                <h2 class="font-title text-4xl md:text-5xl text-inoue mb-4">최신 <span class="text-shohoku">소식 및 분석</span>
+                </h2>
                 <p class="text-gray-500 text-lg">슬램덩크의 세계는 지금도 계속 업데이트됩니다.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Article 1 -->
-                <article onclick="openModal('news-modal-1')" class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
+                <article onclick="openModal('news-modal-1')"
+                    class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
                     <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2071&auto=format&fit=crop" alt="성지순례" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2071&auto=format&fit=crop"
+                            alt="성지순례"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="bg-shohoku/10 text-shohoku text-xs font-bold px-2 py-1 rounded">NEWS</span>
-                            <span class="text-gray-400 text-xs">2026.03.11</span>
+                            <span class="text-gray-400 text-xs">2026.03.16</span>
                         </div>
-                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">더 퍼스트 슬램덩크 인기에 따른 성지순례 가이드</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">가마쿠라코코마에 역부터 쇼난 해변까지, 팬들이라면 꼭 가봐야 할 성지들을 정리했습니다.</p>
+                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">더 퍼스트
+                            슬램덩크 인기에 따른 성지순례 가이드</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">가마쿠라코코마에 역부터 쇼난 해변까지, 팬들이라면 꼭 가봐야 할
+                            성지들을 정리했습니다.</p>
                         <div class="text-inoue font-bold text-sm flex items-center gap-1 group/btn mt-auto">
-                            자세히 보기 <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                            자세히 보기 <i
+                                class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
                 </article>
 
                 <!-- Article 2 -->
-                <article onclick="openModal('news-modal-2')" class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
+                <article onclick="openModal('news-modal-2')"
+                    class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
                     <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop" alt="송태섭" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop"
+                            alt="송태섭"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="bg-bball/10 text-bball text-xs font-bold px-2 py-1 rounded">ANALYSIS</span>
-                            <span class="text-gray-400 text-xs">2026.03.05</span>
+                            <span class="text-gray-400 text-xs">2026.03.15</span>
                         </div>
-                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">송태섭의 리더십: 북산의 새로운 사령탑 분석</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">채치수 은퇴 후, 북산의 차기 주장이 될 송태섭의 리더십 스타일과 팀에 미칠 영향을 분석합니다.</p>
+                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">송태섭의
+                            리더십: 북산의 새로운 사령탑 분석</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">채치수 은퇴 후, 북산의 차기 주장이 될 송태섭의 리더십
+                            스타일과 팀에 미칠 영향을 분석합니다.</p>
                         <div class="text-inoue font-bold text-sm flex items-center gap-1 group/btn mt-auto">
-                            자세히 보기 <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                            자세히 보기 <i
+                                class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
                 </article>
 
                 <!-- Article 3 -->
-                <article onclick="openModal('news-modal-3')" class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
+                <article onclick="openModal('news-modal-3')"
+                    class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer h-full flex flex-col">
                     <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
-                        <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop" alt="비하인드" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop"
+                            alt="비하인드"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex items-center gap-2 mb-4">
                             <span class="bg-inoue/10 text-inoue text-xs font-bold px-2 py-1 rounded">TRIVIA</span>
-                            <span class="text-gray-400 text-xs">2026.02.28</span>
+                            <span class="text-gray-400 text-xs">2026.03.10</span>
                         </div>
-                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">이노우에 작가가 밝힌 산왕공고전 비하인드</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">당시 연재 환경과 최종회 결정에 얽힌 작가의 인터뷰 내용을 다시 짚어봅니다.</p>
+                        <h3 class="font-bold text-xl mb-3 text-inoue group-hover:text-shohoku transition-colors">이노우에
+                            작가가 밝힌 산왕공고전 비하인드</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">당시 연재 환경과 최종회 결정에 얽힌 작가의 인터뷰 내용을 다시
+                            짚어봅니다.</p>
                         <div class="text-inoue font-bold text-sm flex items-center gap-1 group/btn mt-auto">
-                            자세히 보기 <i class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                            자세히 보기 <i
+                                class="fas fa-arrow-right text-xs group-hover/btn:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
                 </article>
+
+                <!-- Article 4 (NEW) -->
+                <article
+                    class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group h-full flex flex-col">
+                    <div class="h-48 overflow-hidden bg-gray-200 shrink-0">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2093&auto=format&fit=crop"
+                            alt="농구공"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span
+                                class="bg-hardwood/20 text-hardwood text-xs font-bold px-2 py-1 rounded">CULTURE</span>
+                            <span class="text-gray-400 text-xs">2026.03.16</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-3 text-inoue">2026 슬램덩크 팬 연합 정기 정모 안내</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">올해로 30주년을 맞이하는 슬램덩크 팬들의 특별한 모임이 이번
+                            주말 개최될 예정입니다.</p>
+                        <span class="text-gray-400 text-sm italic">커뮤니티 공지</span>
+                    </div>
+                </article>
             </div>
+        </div>
+    </section>
+
+    <!-- Fan Activity (활성화 증명용) -->
+    <section class="py-16 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-10">
+                <h2 class="font-title text-3xl text-inoue">최근 <span class="text-shohoku">팬들의 코멘트</span></h2>
+                <span class="flex h-2 w-2 relative">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-shohoku opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-shohoku"></span>
+                </span>
+                <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">LIVE ACTIVITY</span>
+            </div>
+
+            <div id="disqus_thread" class="w-full mt-8 bg-white p-8 rounded-2xl shadow-sm border border-gray-100"></div>
+            <script>
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+                var disqus_config = function () {
+                    this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = "slamdunk-main-page"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+
+                (function () { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://slamdunk-ap4-pages-dev.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered
+                    by Disqus.</a></noscript>
         </div>
     </section>
 
@@ -560,7 +793,7 @@
                     <span class="font-title text-2xl text-manga tracking-wider">SLAM <span
                             class="text-shohoku">DUNK</span></span>
                     <p class="text-sm mt-2">© I.T.Planning, Inc. All rights reserved.</p>
-                    <p class="text-xs mt-1 text-gray-500">Last Updated: 2026. 03. 13</p>
+                    <p class="text-xs mt-1 text-gray-500" id="last-updated-text">Last Updated: 2026. 03. 16</p>
                     <p class="text-xs mt-1">This is a fan-made tribute site. Not for commercial use.</p>
                 </div>
                 <div class="flex flex-col items-center md:items-end">
@@ -585,13 +818,13 @@
     <div class="hidden lg:block">
         <!-- 좌측 고정 광고 -->
         <div class="fixed left-2 top-1/2 -translate-y-1/2 z-40">
-            <ins class="kakao_ad_area" style="display:none;" 
-                data-ad-unit="DAN-LBU6FAKK6nm5XbzQ" data-ad-width="160" data-ad-height="600"></ins>
+            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-LBU6FAKK6nm5XbzQ" data-ad-width="160"
+                data-ad-height="600"></ins>
         </div>
         <!-- 우측 고정 광고 -->
         <div class="fixed right-2 top-1/2 -translate-y-1/2 z-40">
-            <ins class="kakao_ad_area" style="display:none;" 
-                data-ad-unit="DAN-REDTVSMgm1iUYz1n" data-ad-width="160" data-ad-height="600"></ins>
+            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-REDTVSMgm1iUYz1n" data-ad-width="160"
+                data-ad-height="600"></ins>
         </div>
         <!-- 광고 스크립트 (통합) -->
         <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
@@ -599,43 +832,143 @@
 
     <!-- News Modals -->
     <!-- Modal 1 -->
-    <div id="news-modal-1" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0" aria-modal="true">
-        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
-            <button onclick="closeModal('news-modal-1')" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
+    <div id="news-modal-1"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0"
+        aria-modal="true">
+        <div
+            class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
+            <button onclick="closeModal('news-modal-1')"
+                class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
                 <i class="fas fa-times"></i>
             </button>
             <div class="h-64 sm:h-80 w-full relative">
-                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2071&auto=format&fit=crop" alt="성지순례" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2071&auto=format&fit=crop"
+                    alt="성지순례" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 right-6 text-white text-left">
                     <div class="flex items-center gap-2 mb-3">
                         <span class="bg-shohoku text-white text-xs font-bold px-3 py-1 rounded-full shadow">NEWS</span>
                         <span class="text-gray-300 text-sm drop-shadow-md">2026.03.11</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">더 퍼스트 슬램덩크 인기에 따른<br>성지순례 가이드</h2>
+                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">더 퍼스트 슬램덩크 인기에
+                        따른<br>성지순례 가이드</h2>
                 </div>
             </div>
             <div class="p-8 md:p-12 text-gray-800 text-left">
-                <p class="text-lg md:text-xl leading-relaxed mb-8 font-medium text-gray-700 italic border-l-4 border-shohoku pl-4 py-2 bg-gray-50 rounded-r-lg">"뜨거운 코트를 가르며 너에게 가고 있어!" 영화 &lt;더 퍼스트 슬램덩크&gt;의 엄청난 흥행에 힘입어, 원작의 배경이 된 일본 가나가와현 가마쿠라와 에노시마 일대가 전 세계 팬들의 필수 방문 코스로 급부상하고 있습니다.</p>
+                <div class="mb-4 flex items-center gap-3">
+                    <div class="flex -space-x-2">
+                        <img src="https://i.pravatar.cc/100?u=1" class="w-8 h-8 rounded-full border-2 border-white"
+                            alt="author">
+                        <img src="https://i.pravatar.cc/100?u=2" class="w-8 h-8 rounded-full border-2 border-white"
+                            alt="author">
+                    </div>
+                    <span class="text-sm text-gray-500 font-bold">슬램덩크 매니아 리포트 • <span class="text-shohoku">Update:
+                            2026.03.16</span></span>
+                </div>
+                <p
+                    class="text-lg md:text-xl leading-relaxed mb-8 font-medium text-gray-700 italic border-l-4 border-shohoku pl-4 py-2 bg-gray-50 rounded-r-lg">
+                    "뜨거운 코트를 가르며 너에게 가고 있어!" 영화 &lt;더 퍼스트 슬램덩크&gt;의 엄청난 흥행에 힘입어, 원작의 배경이 된 일본 가나가와현 가마쿠라와 에노시마 일대가 전 세계
+                    팬들의 필수 방문 코스로 급부상하고 있습니다.</p>
                 <div class="space-y-10">
                     <div>
-                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">1</div>가마쿠라코코마에 역 앞 건널목</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">오프닝에서 강백호가 가방을 메고 기차를 기다리다 맞은편의 채소연과 인사하는 장면의 모티브가 된 장소입니다. 에노덴(에노시마 전철)이 지나가는 순간을 포착하기 위해 매일 수많은 인파가 몰리는 최고의 포토 스팟입니다. 눈앞에 펼쳐지는 쇼난 바다의 윤슬이 일품입니다.</p>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2">
+                            <div
+                                class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">
+                                1</div>가마쿠라코코마에 역 앞 건널목
+                        </h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">오프닝에서 강백호가 가방을 메고 기차를 기다리다 맞은편의
+                            채소연과 인사하는 장면의 모티브가 된 장소입니다. 에노덴(에노시마 전철)이 지나가는 순간을 포착하기 위해 매일 수많은 인파가 몰리는 최고의 포토 스팟입니다. 눈앞에
+                            펼쳐지는 쇼난 바다의 윤슬이 일품입니다.</p>
+                    </div>
+
+                    <!-- 도구 3: 인터랙티브 성지순례 미니맵 -->
+                    <div class="bg-blue-50/50 rounded-2xl p-6 border border-blue-100 shadow-sm my-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-xl font-bold text-inoue flex items-center gap-2"><i
+                                    class="fas fa-map-marked-alt text-blue-500"></i> 미니맵 탐색기</h4>
+                            <span
+                                class="text-xs bg-white border border-gray-200 px-2 py-1 rounded text-gray-500 shadow-sm">Interactive
+                                Tool</span>
+                        </div>
+
+                        <div
+                            class="relative bg-white rounded-xl h-48 sm:h-64 border-2 border-gray-100 mb-4 overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] flex items-center justify-center">
+                            <!-- 지도 모의선 -->
+                            <svg class="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="none">
+                                <path d="M0,100 Q150,50 300,120 T600,150 T1000,80" fill="none" stroke="#3b82f6"
+                                    stroke-width="4"></path>
+                                <path d="M100,200 L400,200" fill="none" stroke="#4b5563" stroke-width="8"
+                                    stroke-dasharray="20,10"></path> <!-- 철길 -->
+                            </svg>
+                            <!-- 바다 영역 -->
+                            <div class="absolute bottom-0 w-full h-1/3 bg-blue-100/50"></div>
+
+                            <!-- 마커 버튼들 -->
+                            <button onclick="showMapInfo('crossing')"
+                                class="absolute top-1/2 left-[30%] -mt-4 -ml-4 group z-10">
+                                <div
+                                    class="w-8 h-8 bg-shohoku text-white rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-125 hover:bg-red-600">
+                                    <i class="fas fa-train"></i></div>
+                                <span
+                                    class="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">기차
+                                    건널목</span>
+                            </button>
+
+                            <button onclick="showMapInfo('beach')"
+                                class="absolute bottom-[20%] right-[30%] -mt-4 -ml-4 group z-10">
+                                <div
+                                    class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-125 hover:bg-blue-600">
+                                    <i class="fas fa-water"></i></div>
+                                <span
+                                    class="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">쇼난
+                                    해변</span>
+                            </button>
+
+                            <button onclick="showMapInfo('shrine')"
+                                class="absolute top-[20%] right-[15%] -mt-4 -ml-4 group z-10">
+                                <div
+                                    class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-125 hover:bg-green-600">
+                                    <i class="fas fa-torii-gate"></i></div>
+                                <span
+                                    class="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">가마쿠라
+                                    신사</span>
+                            </button>
+                        </div>
+
+                        <!-- 미니맵 정보창 -->
+                        <div id="map-info-box"
+                            class="bg-white p-4 rounded-xl border border-gray-100 min-h-[80px] flex items-center justify-center text-center shadow-inner">
+                            <p class="text-gray-500 text-sm"><i class="fas fa-mouse-pointer mr-1"></i> 지도 위의 마커를 클릭하여 해당
+                                장소의 상세 정보를 확인하세요.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2">
+                            <div
+                                class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">
+                                2</div>쇼난 해변과 에노시마
+                        </h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">서태웅이 이어폰을 꽂고 자전거를 타고 내달리던 해안 도로와 그
+                            너머로 아스라이 보이는 에노시마의 풍경입니다. 마지막 화에서 강백호가 재활 중 잠시 휴식을 취하며 채소연의 편지를 읽던 바닷가 역시 이곳을 배경으로 그려졌습니다.
+                        </p>
                     </div>
                     <div>
-                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">2</div>쇼난 해변과 에노시마</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">서태웅이 이어폰을 꽂고 자전거를 타고 내달리던 해안 도로와 그 너머로 아스라이 보이는 에노시마의 풍경입니다. 마지막 화에서 강백호가 재활 중 잠시 휴식을 취하며 채소연의 편지를 읽던 바닷가 역시 이곳을 배경으로 그려졌습니다.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">3</div>참배와 기원의 신사들</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">츠루가오카 하치만구 등 가마쿠라 인근의 신사에는 팬들이 직접 정성껏 그린 수준급의 슬램덩크 캐릭터 일러스트 에마(소원 팻말)들이 가득 걸려 있어, 성지순례의 또 다른 볼거리와 감동을 제공합니다.</p>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2">
+                            <div
+                                class="w-8 h-8 rounded-full bg-shohoku text-white flex items-center justify-center text-sm font-sans">
+                                3</div>참배와 기원의 신사들
+                        </h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">츠루가오카 하치만구 등 가마쿠라 인근의 신사에는 팬들이 직접
+                            정성껏 그린 수준급의 슬램덩크 캐릭터 일러스트 에마(소원 팻말)들이 가득 걸려 있어, 성지순례의 또 다른 볼거리와 감동을 제공합니다.</p>
                     </div>
                 </div>
                 <div class="mt-12 p-6 bg-red-50 rounded-xl border border-red-100 flex items-start gap-4 shadow-inner">
                     <div class="text-4xl text-shohoku shrink-0 mt-1"><i class="fas fa-exclamation-triangle"></i></div>
                     <div>
                         <p class="text-lg font-bold text-shohoku mb-2">방문 시 유의사항</p>
-                        <p class="text-base text-gray-700 leading-relaxed">주민들이 실제 거주하는 지역이며 도로가 매우 좁아 안전사고 발생 위험이 있습니다. 아무리 좋은 구도를 위해서라도 <strong>차도 나 철길 안쪽으로 들어가는 행위는 절대 금물</strong>입니다. 성숙한 팬 문화를 지켜주세요.</p>
+                        <p class="text-base text-gray-700 leading-relaxed">주민들이 실제 거주하는 지역이며 도로가 매우 좁아 안전사고 발생 위험이 있습니다.
+                            아무리 좋은 구도를 위해서라도 <strong>차도 나 철길 안쪽으로 들어가는 행위는 절대 금물</strong>입니다. 성숙한 팬 문화를 지켜주세요.</p>
                     </div>
                 </div>
             </div>
@@ -643,36 +976,57 @@
     </div>
 
     <!-- Modal 2 -->
-    <div id="news-modal-2" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0" aria-modal="true">
-        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
-            <button onclick="closeModal('news-modal-2')" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
+    <div id="news-modal-2"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0"
+        aria-modal="true">
+        <div
+            class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
+            <button onclick="closeModal('news-modal-2')"
+                class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
                 <i class="fas fa-times"></i>
             </button>
             <div class="h-64 sm:h-80 w-full relative">
-                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop" alt="송태섭" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2090&auto=format&fit=crop"
+                    alt="송태섭" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 right-6 text-white text-left">
                     <div class="flex items-center gap-2 mb-3">
-                        <span class="bg-bball text-white text-xs font-bold px-3 py-1 rounded-full shadow">ANALYSIS</span>
+                        <span
+                            class="bg-bball text-white text-xs font-bold px-3 py-1 rounded-full shadow">ANALYSIS</span>
                         <span class="text-gray-300 text-sm drop-shadow-md">2026.03.05</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">송태섭의 리더십:<br>북산의 새로운 사령탑 분석</h2>
+                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">송태섭의 리더십:<br>북산의 새로운
+                        사령탑 분석</h2>
                 </div>
             </div>
             <div class="p-8 md:p-12 text-gray-800 text-left">
-                <p class="text-lg md:text-xl leading-relaxed mb-8 font-medium text-gray-700 italic border-l-4 border-bball pl-4 py-2 bg-orange-50 rounded-r-lg">"뚫어! 송태섭!" 산왕전에서 경기 흐름을 끊고 이명헌의 철벽 수비를 개인 타이밍으로 돌파하던 송태섭의 모습은 많은 팬들의 심장을 뛰게 했습니다. 채치수와 권준호가 떠난 북산, 등번호 4번을 물려받은 '송태섭 팀'은 과연 어떤 색깔일까요?</p>
+                <p
+                    class="text-lg md:text-xl leading-relaxed mb-8 font-medium text-gray-700 italic border-l-4 border-bball pl-4 py-2 bg-orange-50 rounded-r-lg">
+                    "뚫어! 송태섭!" 산왕전에서 경기 흐름을 끊고 이명헌의 철벽 수비를 개인 타이밍으로 돌파하던 송태섭의 모습은 많은 팬들의 심장을 뛰게 했습니다. 채치수와 권준호가 떠난 북산,
+                    등번호 4번을 물려받은 '송태섭 팀'은 과연 어떤 색깔일까요?</p>
                 <div class="space-y-8">
                     <div>
-                        <h4 class="text-2xl font-title text-inoue mb-3 border-b-2 border-gray-100 pb-2 flex items-center gap-2"><i class="fas fa-comments text-bball text-xl"></i> 부드러운 카리스마와 소통</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">주먹질과 꿀밤, 엄격한 규율로 팀의 기강을 잡았던 채치수(고릴라)와 달리, 송태섭은 선수들과의 뛰어난 소통 능력을 보여줍니다. 강백호의 단순한 성격을 파악하고 다루는 솜씨나, 폭발하는 서태웅의 기를 살려주는 절묘한 패스 고리 역할이 이를 증명합니다. 차기 팀은 한층 더 자율적이고 개개인의 장점이 부각되는 분위기가 될 것입니다.</p>
+                        <h4
+                            class="text-2xl font-title text-inoue mb-3 border-b-2 border-gray-100 pb-2 flex items-center gap-2">
+                            <i class="fas fa-comments text-bball text-xl"></i> 부드러운 카리스마와 소통</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">주먹질과 꿀밤, 엄격한 규율로 팀의 기강을 잡았던
+                            채치수(고릴라)와 달리, 송태섭은 선수들과의 뛰어난 소통 능력을 보여줍니다. 강백호의 단순한 성격을 파악하고 다루는 솜씨나, 폭발하는 서태웅의 기를 살려주는 절묘한
+                            패스 고리 역할이 이를 증명합니다. 차기 팀은 한층 더 자율적이고 개개인의 장점이 부각되는 분위기가 될 것입니다.</p>
                     </div>
                     <div>
-                        <h4 class="text-2xl font-title text-inoue mb-3 border-b-2 border-gray-100 pb-2 flex items-center gap-2"><i class="fas fa-running text-bball text-xl"></i> 런 앤 건(Run & Gun)의 극대화</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">강백호(PF/C)와 서태웅(SF/PF)의 신체 능력과 기동력을 100% 살릴 수 있는 스피드 농구(Run & Gun)가 본격적으로 가동될 것입니다. 넘버원 가드인 송태섭 본인이 직접 경기의 템포를 극강으로 끌어올리며 쉴 새 없이 몰아치는 런 앤 건이 북산의 가장 치명적인 무기로 자리 잡게 됩니다.</p>
+                        <h4
+                            class="text-2xl font-title text-inoue mb-3 border-b-2 border-gray-100 pb-2 flex items-center gap-2">
+                            <i class="fas fa-running text-bball text-xl"></i> 런 앤 건(Run & Gun)의 극대화</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">강백호(PF/C)와 서태웅(SF/PF)의 신체 능력과 기동력을
+                            100% 살릴 수 있는 스피드 농구(Run & Gun)가 본격적으로 가동될 것입니다. 넘버원 가드인 송태섭 본인이 직접 경기의 템포를 극강으로 끌어올리며 쉴 새 없이
+                            몰아치는 런 앤 건이 북산의 가장 치명적인 무기로 자리 잡게 됩니다.</p>
                     </div>
                     <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                        <h4 class="text-2xl font-title text-inoue mb-3 flex items-center gap-2"><i class="fas fa-clipboard-list text-bball text-xl"></i> 남겨진 과제: 골밑 수성</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">가장 큰 문제는 채치수가 빠져나간 센터(골밑)의 빈자리입니다. 강백호가 성장하여 센터 라인을 맡게 되겠지만, 전문적인 포스트업 스킬이나 경험 부족이 약점이 될 수 있습니다. 또한, 여전히 개성 강하고 어디로 튈지 모르는 백호와 태웅이 콤비를 코트 위에서 얼마나 자신의 페이스대로 제어할지가 캡틴 송태섭 앞에 놓인 가장 큰 시험대입니다.</p>
+                        <h4 class="text-2xl font-title text-inoue mb-3 flex items-center gap-2"><i
+                                class="fas fa-clipboard-list text-bball text-xl"></i> 남겨진 과제: 골밑 수성</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">가장 큰 문제는 채치수가 빠져나간 센터(골밑)의 빈자리입니다.
+                            강백호가 성장하여 센터 라인을 맡게 되겠지만, 전문적인 포스트업 스킬이나 경험 부족이 약점이 될 수 있습니다. 또한, 여전히 개성 강하고 어디로 튈지 모르는 백호와
+                            태웅이 콤비를 코트 위에서 얼마나 자신의 페이스대로 제어할지가 캡틴 송태섭 앞에 놓인 가장 큰 시험대입니다.</p>
                     </div>
                 </div>
             </div>
@@ -680,48 +1034,67 @@
     </div>
 
     <!-- Modal 3 -->
-    <div id="news-modal-3" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0" aria-modal="true">
-        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
-            <button onclick="closeModal('news-modal-3')" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
+    <div id="news-modal-3"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 px-4 transition-opacity duration-300 opacity-0"
+        aria-modal="true">
+        <div
+            class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl transform scale-95 transition-transform duration-300 scroll-smooth">
+            <button onclick="closeModal('news-modal-3')"
+                class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-shohoku text-white rounded-full flex items-center justify-center transition-colors z-20 text-xl backdrop-blur">
                 <i class="fas fa-times"></i>
             </button>
             <div class="h-64 sm:h-80 w-full relative">
-                <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop" alt="비하인드" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop"
+                    alt="비하인드" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                 <div class="absolute bottom-6 left-6 right-6 text-white text-left">
                     <div class="flex items-center gap-2 mb-3">
-                        <span class="bg-inoue text-white text-xs font-bold px-3 py-1 rounded-full border border-gray-500 shadow">TRIVIA</span>
+                        <span
+                            class="bg-inoue text-white text-xs font-bold px-3 py-1 rounded-full border border-gray-500 shadow">TRIVIA</span>
                         <span class="text-gray-300 text-sm drop-shadow-md">2026.02.28</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">이노우에 작가가 밝힌<br>산왕공고전 비하인드 스토리</h2>
+                    <h2 class="text-3xl md:text-4xl font-title leading-tight mb-2 drop-shadow-lg">이노우에 작가가 밝힌<br>산왕공고전
+                        비하인드 스토리</h2>
                 </div>
             </div>
             <div class="p-8 md:p-12 text-gray-800 text-left">
-                <p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-gray-700">연재 당시 일본 열도를 넘어 아시아 전역에서 절정의 인기를 구가하던 슬램덩크. 그중에서도 대미를 장식한 '산왕공고전' 직후, 수많은 독자들의 통곡과 아쉬움을 뒤로 한 채 완결을 선언했던 이노우에 다케히코 작가의 뒷이야기를 파헤칩니다.</p>
-                
+                <p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-gray-700">연재 당시 일본 열도를 넘어 아시아 전역에서
+                    절정의 인기를 구가하던 슬램덩크. 그중에서도 대미를 장식한 '산왕공고전' 직후, 수많은 독자들의 통곡과 아쉬움을 뒤로 한 채 완결을 선언했던 이노우에 다케히코 작가의 뒷이야기를
+                    파헤칩니다.</p>
+
                 <div class="space-y-10">
-                    <div class="relative bg-gray-900 text-gray-100 p-8 rounded-2xl shadow-lg border-l-4 border-shohoku overflow-hidden">
+                    <div
+                        class="relative bg-gray-900 text-gray-100 p-8 rounded-2xl shadow-lg border-l-4 border-shohoku overflow-hidden">
                         <i class="fas fa-quote-left absolute top-4 right-6 text-6xl text-gray-800 opacity-50"></i>
                         <h4 class="text-2xl font-title text-white mb-4 relative z-10">"이보다 더 대단한 경기를 그려낼 수는 없었다"</h4>
-                        <p class="text-gray-300 leading-relaxed text-base md:text-lg relative z-10">작가는 훗날 인터뷰를 통해 "산왕전은 내가 가진 모든 에너지를 하얗게 불태운 경기였다. 이 경기보다 더 대단한 감동, 더 엄청난 열기를 독자에게 전할 자신이 없었다. 작품의 상업성을 위해 억지로 이야기를 늘리는 짓은 하고 싶지 않았다"라며 최고의 박수를 받을 때 떠난 이유를 덤덤히 밝혔습니다.</p>
+                        <p class="text-gray-300 leading-relaxed text-base md:text-lg relative z-10">작가는 훗날 인터뷰를 통해 "산왕전은
+                            내가 가진 모든 에너지를 하얗게 불태운 경기였다. 이 경기보다 더 대단한 감동, 더 엄청난 열기를 독자에게 전할 자신이 없었다. 작품의 상업성을 위해 억지로 이야기를
+                            늘리는 짓은 하고 싶지 않았다"라며 최고의 박수를 받을 때 떠난 이유를 덤덤히 밝혔습니다.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
                             <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">침묵의 명장면, 펜선의 마법</h4>
                             <div class="w-12 h-1 bg-shohoku mx-auto mb-4"></div>
-                            <p class="text-gray-600 text-base leading-relaxed">마지막 1분을 남기고 벌어지는 극적인 역전 시퀀스는 대사 하나 없이 오직 그림과 연출선만으로 구성되었습니다. 작가는 독자가 온전히 현장의 숨소리, 신발이 바닥과 마찰하는 스퀴크 소리, 공 튀기는 소리만을 느끼게 하고 싶어 편집부와 상의 끝에 모든 대사들을 과감히 지워버렸습니다.</p>
+                            <p class="text-gray-600 text-base leading-relaxed">마지막 1분을 남기고 벌어지는 극적인 역전 시퀀스는 대사 하나 없이 오직
+                                그림과 연출선만으로 구성되었습니다. 작가는 독자가 온전히 현장의 숨소리, 신발이 바닥과 마찰하는 스퀴크 소리, 공 튀기는 소리만을 느끼게 하고 싶어 편집부와
+                                상의 끝에 모든 대사들을 과감히 지워버렸습니다.</p>
                         </div>
                         <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
                             <h4 class="text-xl font-bold text-gray-900 mb-3 text-center">왼손은 거들 뿐</h4>
                             <div class="w-12 h-1 bg-shohoku mx-auto mb-4"></div>
-                            <p class="text-gray-600 text-base leading-relaxed">강백호의 마지막 슛은 우연히 들어간 운 좋은 버저비터가 아니었습니다. 안선생님과의 아침 훈련, 그리고 수만 번 퉁겼던 2만 번의 점프 슛 연습의 결과물이자 교과서적인 미들 슛이었습니다. 이는 풋내기 강백호가 드디어 진정한 '농구 선수'로 완성되는 완벽한 순간이었습니다.</p>
+                            <p class="text-gray-600 text-base leading-relaxed">강백호의 마지막 슛은 우연히 들어간 운 좋은 버저비터가 아니었습니다.
+                                안선생님과의 아침 훈련, 그리고 수만 번 퉁겼던 2만 번의 점프 슛 연습의 결과물이자 교과서적인 미들 슛이었습니다. 이는 풋내기 강백호가 드디어 진정한 '농구
+                                선수'로 완성되는 완벽한 순간이었습니다.</p>
                         </div>
                     </div>
-                    
+
                     <div class="border-t border-gray-200 pt-8 mt-8">
-                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><i class="fas fa-handshake-slash text-gray-400"></i> 편집부와의 끈질긴 줄다리기</h4>
-                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">출판사 입장에서는 최고의 캐시카우를 당장 놓아줄 수 없었습니다. 명정공업고교(김판석), 대영고교(이현수) 등 떡밥으로 남겨둔 전국구 팀들과의 스토리를 이어가길 원했죠. 하지만 작가는 자신의 예술적 신념과 영원히 기억될 작품의 완성도를 위해, 산왕전에서의 사투 여파로 거짓말처럼 참패를 당하는 가장 현실적이면서도 낭만적인 결말을 고수했습니다.</p>
+                        <h4 class="text-2xl font-title text-inoue mb-4 flex items-center gap-2"><i
+                                class="fas fa-handshake-slash text-gray-400"></i> 편집부와의 끈질긴 줄다리기</h4>
+                        <p class="text-gray-600 leading-relaxed text-base md:text-lg">출판사 입장에서는 최고의 캐시카우를 당장 놓아줄 수
+                            없었습니다. 명정공업고교(김판석), 대영고교(이현수) 등 떡밥으로 남겨둔 전국구 팀들과의 스토리를 이어가길 원했죠. 하지만 작가는 자신의 예술적 신념과 영원히 기억될
+                            작품의 완성도를 위해, 산왕전에서의 사투 여파로 거짓말처럼 참패를 당하는 가장 현실적이면서도 낭만적인 결말을 고수했습니다.</p>
                     </div>
                 </div>
             </div>
@@ -730,6 +1103,7 @@
 
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
+    <script id="dsq-count-scr" src="//slamdunk-ap4-pages-dev.disqus.com/count.js" async></script>
 </body>
 
 </html>
